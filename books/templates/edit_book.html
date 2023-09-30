@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Editar Libro{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <h1 class="text-center">Editar Libro</h1>
+        <form method="post" class="mt-5">
+            {% csrf_token %}
+            <div class="mb-3">
+                <input type="text" name="title" class="form-control" value="{{ book.title }}" placeholder="Titulo del Libro" required>
+            </div>
+            <div class="mb-3">
+                <input type="text" name="author" class="form-control" value="{{ book.author }}" placeholder="Autor" required>
+            </div>
+            <div class="mb-3">
+                <select class="form-select" id="validationCustom04" name="category" required>
+                    <option disabled>Selecciona la Categoria</option>
+                    <option value="Fantasia" {% if book.category == 'Fantasia' %}selected{% endif %}>Fantasia</option>
+                    <option value="Ficcion" {% if book.category == 'Ficcion' %}selected{% endif %}>Ficcion</option>
+                    <option value="Distopico" {% if book.category == 'Distopico' %}selected{% endif %}>Distopico</option>
+                    <option value="Drama" {% if book.category == 'Drama' %}selected{% endif %}>Drama</option>
+                </select>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
